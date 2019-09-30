@@ -124,7 +124,7 @@ task createOerebDbDockerContainer(dependsOn: 'pullOerebDbDockerImage', type: Doc
                "PG_WRITE_PASSWORD": "gretl",
                "PG_READ_USER": "ogc_server",
                "PG_READ_PASSWORD": "ogc_server"])
-    binds = ["/Users/stefan/oereb-db-data/":"/pgdata"]
+    binds = ["/tmp":"/pgdata"]
 }
 
 task removeOerebDbDockerContainer(type: DockerRemoveContainer) {
