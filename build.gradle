@@ -542,6 +542,7 @@ task buildOerebDbDataDockerImage(type: DockerBuildImage, dependsOn: "importData_
 
     finalizedBy {
         pushDockerImages
+        deleteOerebDbDataDirectory
     }
 }
 
@@ -568,6 +569,12 @@ task pushDockerImages() {
         tasks.findAll { task -> task.name.startsWith('pushDockerImage_') }
     }    
 }
+
+task deleteOerebDbDataDirectory(type: Delete) {
+    delete './primary'
+}
+   
+
 
 def setNonExistingPropertyToUndefinedValue(propertyName) {
     setNonExistingPropertyToDefaultValue(propertyName, 'UNDEFINED')
