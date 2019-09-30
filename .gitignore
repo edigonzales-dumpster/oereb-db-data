@@ -1,3 +1,6 @@
+primary/
+build/
+.gradle
 .vagrant
 .DS_Store
 *.bak

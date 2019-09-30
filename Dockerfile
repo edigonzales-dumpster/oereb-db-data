@@ -10,11 +10,10 @@ USER root
 
 #mkdir oereb
 COPY primary /tmp/primary
-RUN chown -R 26:26 /tmp
-#RUN chmod -R 0700 /tmp
-RUN chmod -R 0700 /tmp/primary
+RUN chown -R 26:26 /tmp \
+    && chmod -R 0700 /tmp/primary
 
-COPY start.sh /opt/cpm/bin/start.sh
+COPY start.sh /opt/cpm/bin/start.sh 
 COPY setenv.sh /opt/cpm/bin/setenv.sh
 
 USER 26
