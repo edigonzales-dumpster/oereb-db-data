@@ -183,7 +183,7 @@ cadastralSurveyingDataSets.each { cadastralSurveyingDataSet ->
         models = iliModelAmtlicheVermessung
         dbschema = dbSchema
         dataFile = file(Paths.get(pathToTempFolder.toString(), dataSet + "00.itf"))
-        topics = "DM01AVCH24LV95D.Liegenschaften;DM01AVCH24LV95D.Gemeindegrenzen;DM01AVCH24LV95D.Gebaeudeadressen"
+        //topics = "DM01AVCH24LV95D.Liegenschaften;DM01AVCH24LV95D.Gemeindegrenzen;DM01AVCH24LV95D.Gebaeudeadressen"
         dataset = dataSet
         disableValidation = true
 
@@ -444,6 +444,11 @@ task refreshMaterializedViews(type: SqlExecutor) {
     sqlFiles = ["refresh_materialized_views.sql"]
 } 
 
+task createSearchViews(type: SqlExecutor) {
+    description = "Erstell Search Views."
+    database = [dbUriOereb, dbUserOereb, dbPwdOereb]
+    sqlFiles = ["create_search_views.sql"]
+} 
 
 task importData_full() {
     description = "Import alle notwendigen Daten in die (temporäre) ÖREB-DB."
@@ -459,8 +464,10 @@ task importData_full() {
     dependsOn replaceAnnexData
     dependsOn replaceLandUsePlansData
     dependsOn refreshMaterializedViews
+    dependsOn createSearchViews
     dependsOn stopOerebDbDockerContainer
 
+    createSearchViews.mustRunAfter(startOerebDbDockerContainer)
     replaceCadastralSurveyingData.mustRunAfter(startOerebDbDockerContainer)
     replacePlzData.mustRunAfter(replaceCadastralSurveyingData)
     replaceFederalCodesDataSet.mustRunAfter(replacePlzData)

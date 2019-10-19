@@ -1,4 +1,4 @@
-FROM sogis/oereb-db
+FROM sogis/oereb-db:69
 
 LABEL name="sogis/oereb-db-data"
 LABEL vendor="AGI"

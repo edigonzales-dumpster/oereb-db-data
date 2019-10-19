@@ -22,4 +22,3 @@ gradle -I $PWD/init.gradle -b build.gradle buildOerebDbDataDockerImage -Pflavor=
 - `full`: Datenbank wird komplett mit allen Daten (AV, PLZ/Ortschaft, Annex, Bundedaten etc.) erstellt.
 - `plr`: Datenbank wird nur mit den kantonalen ÖREB-Daten (plus die Daten, die zwingend benötigt werden) erstellt.
 - `replace`: Kantonale ÖREB-Daten werden im ausgetauscht. Bedingt, dass das DB-Datenverzeichnis noch vorhanden ist auf dem Filesystem.
-
