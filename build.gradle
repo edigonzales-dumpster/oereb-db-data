@@ -105,7 +105,7 @@ task createOerebDbDockerContainer(dependsOn: 'pullOerebDbDockerImage', type: Doc
     dependsOn 'removeOerebDbDockerContainer'
     description = "Create docker oereb database container."
 
-    image = "sogis/oereb-db:latest"
+    image = "sogis/oereb-db:69"
     imageId = "oereb-db"
     containerName = "oereb-db"
     hostName = "primary"
