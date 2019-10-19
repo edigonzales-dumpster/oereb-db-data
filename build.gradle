@@ -542,7 +542,7 @@ task buildOerebDbDataDockerImage(type: DockerBuildImage, dependsOn: "importData_
     description = "Build docker oereb database image containing data."
     //inputDir = project.rootDir
     inputDir = projectDir
-    tags = ["sogis/oereb-db-data:"+flavor, "sogis/oereb-db-data:latest"]
+    tags = ["sogis/oereb-db-data:"+flavor, "sogis/oereb-db-data:"+new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()]
     labels = ["oereb-db-data.created": new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), 
             "oereb-db-data.git_commit": getCheckedOutGitCommitHash(), 
             "oereb-db-data.travis_build": getCheckedOutGitCommitHash()]
