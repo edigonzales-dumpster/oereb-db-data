@@ -538,11 +538,12 @@ task copyOerebDbDataDirectory(type: Copy) {
 // Damit das möglich ist, muss im setenv.sh File die ENV-Variable PGDATA
 // korrekt gesetzt werden.
 // TODO: fixme. Ist noch gefrickelt. start.sh braucht es nicht mehr?
+String today = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()).replace(":","")
 task buildOerebDbDataDockerImage(type: DockerBuildImage, dependsOn: "importData_$flavor") {
     description = "Build docker oereb database image containing data."
     //inputDir = project.rootDir
     inputDir = projectDir
-    tags = ["sogis/oereb-db-data:"+flavor, "sogis/oereb-db-data:"+new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss").format(new Date()]
+    tags = ["sogis/oereb-db-data:"+flavor, "sogis/oereb-db-data:"+today]
     labels = ["oereb-db-data.created": new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), 
             "oereb-db-data.git_commit": getCheckedOutGitCommitHash(), 
             "oereb-db-data.travis_build": getCheckedOutGitCommitHash()]
