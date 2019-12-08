@@ -17,3 +17,5 @@ COPY start.sh /opt/cpm/bin/start.sh
 COPY setenv.sh /opt/cpm/bin/setenv.sh
 
 USER 26
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s CMD /usr/pgsql-11/bin/pg_isready -h localhost -p 5432
